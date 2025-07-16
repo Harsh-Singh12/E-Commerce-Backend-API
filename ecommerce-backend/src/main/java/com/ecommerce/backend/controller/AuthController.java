@@ -1,5 +1,6 @@
 package com.ecommerce.backend.controller;
 
+import com.ecommerce.backend.model.LoginRequest;
 import com.ecommerce.backend.model.RegisterRequest;
 import com.ecommerce.backend.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +27,10 @@ public class AuthController {
                 request.getEmail(),
                 request.getPassword());
                 return ResponseEntity.ok(Collections.singletonMap("token",token));
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        String token = userService.login(request);
+        return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 }
