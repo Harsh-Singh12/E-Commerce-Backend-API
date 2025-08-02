@@ -1,9 +1,8 @@
 package com.ecommerce.backend.controller;
 
-
 import com.ecommerce.backend.model.Product;
-import com.ecommerce.backend.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ecommerce.backend.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,37 +11,35 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
 
-    @Autowired
-   private ProductRepository productRepository;
-   @PostMapping
-    public Product createProduct(@RequestBody Product product){
-       return productRepository.save(product);
-   }
+    private final ProductService productService;
 
-   @GetMapping
-    public List<Product> getAllProduct(){
-       return productRepository.findAll();
-   }
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        return ResponseEntity.ok(productService.addProduct(product));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productRepository.findById(id).orElse(null);
+    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getProductById(id));
     }
 
-    // Update product
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        Product product = productRepository.findById(id).orElse(null);
-        if (product == null) return null;
-
-        product.setName(updatedProduct.getName());
-        product.setPrice(updatedProduct.getPrice());
-
-        return productRepository.save(product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        return ResponseEntity.ok(productService.updateProduct(id, product));
     }
 
-    // Delete product
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        productRepository.deleteById(id);
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Product deleted successfully");
     }
 }
