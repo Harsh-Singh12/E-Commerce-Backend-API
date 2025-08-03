@@ -13,7 +13,8 @@ Order Placement
 
 Dummy Payment Integration
 
-Tech Stack
+2. Tech Stack
+
 Spring Boot (3.4+), Spring Security, JPA
 
 MySQL, Redis
