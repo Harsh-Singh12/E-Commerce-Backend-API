@@ -18,7 +18,8 @@ public class Order {
 
     @ElementCollection
     private List<Long> productIds;
-
+    @Column
+    private boolean paid = false;
     // Default constructor
     public Order() {
     }
