@@ -1,26 +1,47 @@
-# E-Commerce-Backend-API
-📦 Features
+# 🛒 E-Commerce-Backend-API
 
-User Registration & Login with JWT
+A robust and secure backend REST API for an e-commerce application built using Spring Boot. Supports user authentication, product management, cart/wishlist handling with Redis, order placement, and dummy payment simulation.
 
-Role-Based Auth & Protected APIs
+---
 
-CRUD for Products & Categories
+## 📦 Features
 
-Cart & Wishlist with Redis
+- **🔐 User Registration & Login with JWT**  
+  Allows users to securely register and log in. Issues JWT tokens for protected access.
 
-Order Placement
+- **🛡️ Role-Based Auth & Protected APIs**  
+  Secures endpoints using Spring Security and JWT. Only authenticated users can access protected resources.
 
-Dummy Payment Integration
+- **📦 CRUD for Products & Categories**  
+  Admin users can create, update, delete, and list products and categories.
 
+- **🛒 Cart & Wishlist with Redis**  
+  Users can manage cart and wishlist efficiently using Redis for fast in-memory access.
 
+- **📦 Order Placement**  
+  Users can place orders for items in their cart. Orders are persisted and can be viewed later.
 
-2. Tech Stack
+- **💳 Dummy Payment Integration**  
+  Simulates payment flow for testing order checkout without real payment gateway integration.
 
-Spring Boot (3.4+), Spring Security, JPA
+---
 
-MySQL, Redis
+## 🛠️ Tech Stack
 
-JWT for authentication
+- **Framework:** Spring Boot (3.4+), Spring Security, Spring Data JPA  
+- **Database:** MySQL for persistent storage  
+- **Cache:** Redis for cart and wishlist  
+- **Auth:** JWT (JSON Web Token) for secure authentication  
+- **Tools:** Maven, Lombok, Postman for API testing and documentation
 
-Maven, Lombok, Postman for API testing
+---
+
+## 🚀 Getting Started
+
+To run this project locally:
+
+```bash
+git clone https://github.com/Harsh-Singh12/E-Commerce-Backend-API.git
+cd E-Commerce-Backend-API
+./mvnw spring-boot:run
+
